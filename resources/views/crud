@@ -1,0 +1,36 @@
+<div class="mb-4">
+                    <select name="jenis_ram" id="editJenisRam" required class="border p-2 rounded w-full">
+                        <option value="DDR3">DDR3</option>
+                        <option value="DDR4">DDR4</option>
+                        <option value="DDR5">DDR5</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <select name="ukuran_ram" id="editUkuranRam" required class="border p-2 rounded w-full">
+                        <option value="4GB">4GB</option>
+                        <option value="8GB">8GB</option>
+                        <option value="12GB">12GB</option>
+                        <option value="16GB">16GB</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <select name="jenis_storage" id="editJenisStorage" required class="border p-2 rounded w-full">
+                        <option value="HDD">HDD</option>
+                        <option value="SSD">SSD</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <select name="ukuran_storage" id="editUkuranStorage" required class="border p-2 rounded w-full">
+                        <option value="256GB">256GB</option>
+                        <option value="512GB">512GB</option>
+                        <option value="1TB">1TB</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <select name="sistem_operasi" id="editSistemOperasi" required class="border p-2 rounded w-full">
+                        <option value="Windows 10">Windows 10</option>
+                        <option value="Windows 11">Windows 11</option>
+                        <option value="iOS">iOS</option>
+                    </select>
+                </div>

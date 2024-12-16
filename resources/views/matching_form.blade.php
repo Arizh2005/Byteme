@@ -32,7 +32,7 @@
                         </select>
 
                         <label for="processor">Processor</label>
-                        <input type="text" name="prosesor" placeholder="Prosesor" class="border p-2 rounded w-full mb-2">
+                        <input type="text" name="processor" placeholder="Prosesor" class="border p-2 rounded w-full mb-2">
 
                         <label for="jenis ram">Jenis RAM</label>
                         <select name="jenis_ram" class="border p-2 rounded w-full mb-2">
@@ -111,5 +111,35 @@
         </form>
     </div>
 </x-app-layout>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const formElements = document.querySelectorAll(
+            'input[name], select[name]'
+        );
+
+        formElements.forEach(element => {
+            element.addEventListener('change', () => {
+                const formData = new FormData();
+
+                formElements.forEach(input => {
+                    if (input.name) {
+                        formData.append(input.name, input.value);
+                    }
+                });
+
+                axios.post('{{ route('preferences.save') }}', formData)
+                    .then(response => {
+                        console.log(response.data.message);
+                    })
+                    .catch(error => {
+                        console.error('Error saving preferences:', error);
+                    });
+            });
+        });
+    });
+</script>
+
 
 @include('layouts.footer')

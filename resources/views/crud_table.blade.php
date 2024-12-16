@@ -50,6 +50,7 @@
                 <input type="text" name="tipe_laptop" placeholder="Tipe Laptop" required class="border p-2 rounded">
                 <input type="text" name="description" placeholder="Description" required class="border p-2 rounded">
                 <input type="number" name="harga" placeholder="Harga (IDR)" required class="border p-2 rounded">
+                <input type="text" name="link" placeholder="Link" required class="border p-2 rounded">
                 <input type="file" name="gambar" class="border p-2 rounded" accept="image/*">
             </div>
             <button type="submit" class="bg-green-500 text-white py-2 px-4 mt-4 rounded">Tambah Laptop</button>
@@ -125,24 +126,49 @@
                 <div class="mb-4">
                     <input type="text" name="processor" id="editProcessor" placeholder="Processor" required class="border p-2 w-full rounded">
                 </div>
-                <div class="mb-4">
-                    <input type="text" name="jenis_ram" id="editJenisRam" placeholder="Jenis RAM" required class="border p-2 w-full rounded">
-                </div>
-                <div class="mb-4">
-                    <input type="text" name="ukuran_ram" id="editUkuranRam" placeholder="Ukuran RAM (GB)" required class="border p-2 w-full rounded">
-                </div>
-                <div class="mb-4">
-                    <input type="text" name="jenis_storage" id="editJenisStorage" placeholder="Jenis Storage" required class="border p-2 w-full rounded">
-                </div>
-                <div class="mb-4">
-                    <input type="text" name="ukuran_storage" id="editUkuranStorage" placeholder="Ukuran Storage (GB)" required class="border p-2 w-full rounded">
-                </div>
+
                 <div class="mb-4">
                     <input type="text" name="gpu" id="editGPU" placeholder="GPU" class="border p-2 w-full rounded">
                 </div>
+
                 <div class="mb-4">
-                    <input type="text" name="sistem_operasi" id="editSistemOperasi" placeholder="OS" class="border p-2 w-full rounded">
+                    <select name="jenis_ram" id="editJenisRam" required class="border p-2 rounded w-full">
+                        <option value="DDR3">DDR3</option>
+                        <option value="DDR4">DDR4</option>
+                        <option value="DDR5">DDR5</option>
+                    </select>
                 </div>
+                <div class="mb-4">
+                    <select name="ukuran_ram" id="editUkuranRam" required class="border p-2 rounded w-full">
+                        <option value="4GB">4GB</option>
+                        <option value="8GB">8GB</option>
+                        <option value="12GB">12GB</option>
+                        <option value="16GB">16GB</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <select name="jenis_storage" id="editJenisStorage" required class="border p-2 rounded w-full">
+                        <option value="HDD">HDD</option>
+                        <option value="SSD">SSD</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <select name="ukuran_storage" id="editUkuranStorage" required class="border p-2 rounded w-full">
+                        <option value="256GB">256GB</option>
+                        <option value="512GB">512GB</option>
+                        <option value="1TB">1TB</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <select name="sistem_operasi" id="editSistemOperasi" required class="border p-2 rounded w-full">
+                        <option value="Windows 10">Windows 10</option>
+                        <option value="Windows 11">Windows 11</option>
+                        <option value="iOS">iOS</option>
+                    </select>
+                </div>
+
+
                 <div class="mb-4">
                     <input type="text" name="tipe_laptop" id="editTipeLaptop" placeholder="Tipe Laptop" class="border p-2 w-full rounded">
                 </div>
@@ -153,6 +179,7 @@
                     <input type="file" name="gambar" class="border p-2 w-full rounded" accept="image/*">
                     <p id="currentImage" class="text-gray-500 mt-2">Gambar saat ini: <span id="imagePreview"></span></p>
                 </div>
+
                 <div class="flex justify-end">
                     <button type="button" onclick="closeEditForm()" class="bg-gray-500 text-white py-2 px-4 rounded mr-2">Batal</button>
                     <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Simpan</button>

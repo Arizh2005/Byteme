@@ -3,9 +3,10 @@
 // app/Http/Controllers/MatchController.php
 
 namespace App\Http\Controllers;
-
+use App\Models\UserPreference;
 use Illuminate\Http\Request;
 use App\Models\Laptop;
+use Illuminate\Support\Facades\DB;
 
 class MatchController extends Controller
 {
@@ -122,6 +123,7 @@ public function store(Request $request)
             'description' => 'nullable|string',
             'harga' => 'required|integer',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'link' => 'required|url'
     ]);
 
     // Cek apakah ada gambar yang diupload
@@ -144,6 +146,7 @@ public function store(Request $request)
         'description' => $request->description,
         'harga' => $request->harga,
         'gambar' => $data['gambar'] ?? null,
+        'link' => $request->link,
     ]);
 
 
@@ -152,6 +155,8 @@ public function store(Request $request)
 
 public function update(Request $request, $id)
 {
+    \Log::info($request->all());
+
     $request->validate([
             'merk' => 'required|string',
             'model' => 'required|string',
@@ -169,8 +174,9 @@ public function update(Request $request, $id)
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
     ]);
 
-    $laptop = Laptop::findOrFail($id);
+    $laptops = Laptop::findOrFail($id);
     $data = $request->all();
+
 
     // Jika ada gambar baru yang diupload, hapus yang lama dan simpan yang baru
     if ($request->hasFile('gambar')) {
@@ -180,7 +186,7 @@ public function update(Request $request, $id)
         $data['gambar'] = $request->file('gambar')->store('uploads', 'public');
     }
 
-    $laptop->update($data);
+    $laptops->update($data);
 
     return redirect()->route('crud_table.index')->with('success', 'Laptop berhasil diperbarui.');
     }
@@ -215,7 +221,19 @@ public function update(Request $request, $id)
         return redirect()->route('crud_table.index')->with('success', 'Laptop berhasil dihapus.');
     }
 
+    public function savePreferences(Request $request){
+        $preferences = $request->only([
+            'merk', 'model', 'sistem_operasi', 'processor',
+            'jenis_ram', 'ukuran_ram', 'jenis_storage', 'ukuran_storage',
+            'gpu', 'min_price', 'max_price', 'ukuran_layar', 'tipe_laptop'
+        ]);
 
+        UserPreference::updateOrCreate(
+            ['user_id' => auth()->id()],
+            ['preferences' => json_encode($preferences)]
+        );
 
+        return response()->json(['message' => 'Preferences saved successfully.']);
 
+    }
 }

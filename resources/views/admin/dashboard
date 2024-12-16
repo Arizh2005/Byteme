@@ -1,0 +1,82 @@
+<!--<x-admin-layout>
+    <div class="p-6">
+        <!-- Title -->
+        <div class="mb-6">
+            <h1 class="text-3xl font-bold text-blue-900">Dashboard</h1>
+        </div>
+
+        <!-- Graph Section -->
+        <div class="bg-yellow-50 rounded-lg shadow p-4 mb-6">
+            <h2 class="text-lg font-semibold text-blue-800 mb-4">Weekly Statistics</h2>
+            <div class="relative w-full h-64">
+                <!-- Replace this with a chart library like Chart.js -->
+                <canvas id="weeklyChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="grid grid-cols-3 gap-6">
+            <!-- Visitor Login -->
+            <div class="bg-blue-100 rounded-lg shadow p-4 flex flex-col items-center">
+                <div class="text-xl font-semibold text-blue-800">Visitor Login</div>
+                <div class="text-3xl font-bold text-blue-900">12,000</div>
+            </div>
+
+            <!-- View Products -->
+            <div class="bg-blue-100 rounded-lg shadow p-4 flex flex-col items-center">
+                <div class="text-xl font-semibold text-blue-800">View Products</div>
+                <div class="text-3xl font-bold text-blue-900">12,000</div>
+            </div>
+
+            <!-- Find Yours -->
+            <div class="bg-blue-100 rounded-lg shadow p-4 flex flex-col items-center">
+                <div class="text-xl font-semibold text-blue-800">Find Yours</div>
+                <div class="text-3xl font-bold text-blue-900">12,000</div>
+            </div>
+        </div>
+    </div>
+
+    @push('scripts')
+<script>
+    // Data yang dikirim dari controller
+    const chartLabels = @json($chartData['labels']);
+const chartData = @json($chartData['data']);
+
+const ctx = document.getElementById('weeklyChart').getContext('2d');
+const weeklyChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: chartLabels,
+        datasets: [{
+            label: 'Visitor Login',
+            data: chartData,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top'
+            }
+        },
+        scales: {
+            x: {
+                beginAtZero: true
+            },
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+</script>
+@endpush
+
+
+
+
+</x-admin-layout>

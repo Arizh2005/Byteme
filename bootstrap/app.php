@@ -4,6 +4,8 @@ use App\Http\Middleware\UserMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Support\Facades\Event;
+use App\Listeners\LogUserLogin;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -21,3 +23,5 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+
+    Event::listen(Login::class, LogUserLogin::class);

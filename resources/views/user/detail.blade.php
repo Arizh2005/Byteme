@@ -29,6 +29,7 @@
                     <li><strong>GPU:</strong> {{ $laptop->gpu }}</li>
                     <li><strong>Ukuran Layar:</strong> {{ $laptop->ukuran_layar }}"</li>
                     <li><strong>Harga:</strong> Rp {{ number_format($laptop->harga, 0, ',', '.') }}</li>
+                    <li><strong>Official Store :</strong>{{$laptop->link}}</li>
                 </ul>
             </div>
         </div>
