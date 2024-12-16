@@ -153,17 +153,18 @@ public function store(Request $request)
 public function update(Request $request, $id)
 {
     $request->validate([
-        'merk' => 'required|string',
+            'merk' => 'required|string',
             'model' => 'required|string',
-            'sistem_operasi' => 'nullable|string',
+            'sistem_operasi' => 'required|string|in:Windows 10,Windows 11,iOS',
             'processor' => 'required|string',
-            'jenis_ram' => 'required|string',
-            'ukuran_ram' => 'required|string',
-            'jenis_storage' => 'required|string',
-            'ukuran_storage' => 'required|string',
+            'jenis_ram' => 'required|string|in:DDR3,DDR4,DDR5',
+            'ukuran_ram' => 'required|string|in:4GB,8GB,12GB,16GB',
+            'jenis_storage' => 'required|string|in:SSD,HDD',
+            'ukuran_storage' => 'required|string|in:256GB,512GB,1TB',
             'gpu' => 'nullable|string',
             'ukuran_layar' => 'nullable|string',
             'tipe_laptop' => 'nullable|string',
+            'description' => 'nullable|string',
             'harga' => 'required|integer',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
     ]);

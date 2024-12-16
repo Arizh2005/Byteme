@@ -1,24 +1,24 @@
+<!-- Tambahkan Link Google Fonts di sini -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jua&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 @include('layouts.nav')
 <x-app-layout>
     <div class="max-w-full mx-auto px-8 py-8 sm:px-10 lg:px-12">
         <!-- Header -->
-        <h1 class="text-4xl font-bold text-left mb-8 ml-8 text-blue-800">Find Your Ideal Laptop</h1>
-        <hr class="border-t-2 border-blue-400 mb-8">
+        <h1 class="text-5xl md:text-5xl font-jua text-darkblue text-left mb-8 ml-8">Find Your Ideal Laptop</h1>
+        <hr class="border-t-2 border-darkblue mb-8">
 
         <form action="{{ route('matching.check') }}" method="POST">
             @csrf
             <div class="grid grid-cols-2 gap-16">
                 <!-- Spesifikasi Dasar -->
-                <div class="bg-blue-100 p-6 rounded-lg shadow-md">
-                    <h2 class="text-2xl font-bold text-blue-700 mb-6">Spesifikasi Dasar</h2>
-                    <div class="grid grid-cols-1 gap-2">
+                <div class="bg-iceblue p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-poppins font-semibold text-darkblue mb-6">Spesifikasi Dasar</h2>
+                    <div class="grid grid-cols-1 gap-2 text-base font-inter font-normal">
                         <label for="merk">Merk</label>
-                        <select name="merk" class="border p-2 rounded w-full mb-2">
-                            <option value="">Pilih Merk</option>
-                            <option value="Asus">Asus</option>
-                            <option value="Dell">Dell</option>
-                            <option value="HP">HP</option>
-                        </select>
+                        <input type="text" name="merk" placeholder="Merk" class="border p-2 rounded w-full mb-2">
 
                         <label for="model">Model</label>
                         <input type="text" name="model" placeholder="Model" class="border p-2 rounded w-full mb-2">
@@ -77,9 +77,9 @@
                     </div>
 
                     <!-- Preferensi Anda -->
-                    <div class="bg-yellow-100 p-6 rounded-lg shadow-md">
-                        <h2 class="text-2xl font-bold text-yellow-600 mb-6">Preferensi Anda</h2>
-                        <div class="grid grid-cols-1 gap-2">
+                    <div class="bg-creamy p-6 rounded-lg shadow-md">
+                        <h2 class="text-2xl font-poppins font-semibold text-darkblue mb-6">Preferensi Anda</h2>
+                        <div class="grid grid-cols-1 gap-2 text-base font-inter font-normal">
                             <label for="min price">Harga Minimum</label>
                             <input type="number" name="min_price" placeholder="Harga Minimum" class="border p-2 rounded w-full mb-2">
 
@@ -104,7 +104,7 @@
             <!-- Button -->
             <div class="mt-12">
                 <button type="submit"
-                    class="bg-blue-900 text-white py-3 px-8 rounded-lg shadow-lg hover:bg-blue-800 w-full text-center">
+                    class="text-base bg-darkblue font-inter font-semibold text-white py-3 px-8 rounded-lg shadow-lg hover:bg-iceblue w-full text-center">
                     Find Your Laptop
                 </button>
             </div>

@@ -11,9 +11,9 @@
 
 <body class="flex flex-col items-center justify-center min-h-screen p-4">
     <div class="md:flex md:justify-center md:items-center">
-        <div class="pt-16 max-w-3xl mx-auto ml-12 mr-12 text-justify">
-            <h1 class="text-4xl md:text-5xl text-center font-bold text-blue-900 leading-tight mb-12">About Us</h1>
-            <p class="text-slate-600 mb-4 leading-relaxed">
+        <div class="pt-16 max-w-5xl mx-auto ml-12 mr-12 text-justify">
+            <h1 class="text-5xl md:text-6xl font-jua font-normal text-darkblue text-center leading-tight mb-12">About Us</h1>
+            <p class="text-xl text-darkblue font-inter font-normal mb-4 leading-relaxed">
                 Kami adalah perusahaan pengembang website yang telah dipercaya oleh banyak klien dalam menciptakan
                 website yang tidak hanya menarik tapi juga memberikan nilai nyata bagi masyarakat. Selama lebih dari
                 satu tahun, kami terus berinovasi dalam mengembangkan solusi digital yang efektif. Salah satu produk
