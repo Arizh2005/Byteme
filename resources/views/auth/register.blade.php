@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{str_replace('_', '-', app()->getLocale())}}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <meta name="crsf-token" content="{{csrf_token()}}">
-</head>
-<body>
+<x-guest-layout>
     <div class="flex h-screen">
         <!-- Left Side (Registration Form) -->
         <div class="w-7/12 flex justify-center items-center">
@@ -14,7 +6,7 @@
                 <h1 class="text-5xl text-center font-bold text-blue-900 mb-2">Get Started</h1>
                 <p class="text-gray-600 text-center mb-6">Welcome to Laptify. Let's create your account</p>
 
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register') }}" id="registerForm">
                     @csrf
 
                     <!-- Username -->
@@ -44,6 +36,16 @@
                         <x-text-input id="password_confirmation" class="block mt-1 w-full h-8 border border-gray-400" type="password" name="password_confirmation" required autocomplete="new-password" />
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
+                    <div class="row">
+                        <div class="w-full">
+                            <div class="g-recaptcha" data-sitekey="{{ env('CAPTCHA_KEY') }}">
+                                @error('g-recaptcha-response')
+                                    <span class="text-red-500 text-sm mt-2">{{ $message }}</span>
+
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Sign Up Button -->
                     <div class="flex items-center justify-center mt-6">
@@ -52,8 +54,30 @@
                         </x-primary-button>
                     </div>
 
+
+
                     <p class="mt-4 text-center text-sm text-gray-500">Already have an account? <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Login</a></p>
                 </form>
+
+
+                @push('scripts')
+        <!--<script>
+        function onSubmit(token) {
+          document.getElementById("registerForm").submit();
+        }
+        </script>-->
+                <script>
+                    function onClick(e) {
+                    e.preventDefault();
+                    grecaptcha.ready(function() {
+                        grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {action: 'register'}).then(function(token) {
+                            document.getElementById("g-recaptcha-response").value = token;
+                            document.getElementById("registerForm").submit();
+                        });
+                    });
+                    }
+                </script>
+            @endpush
             </div>
         </div>
 
@@ -64,5 +88,5 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+</x-guest-layout>
+

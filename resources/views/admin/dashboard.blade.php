@@ -25,6 +25,11 @@
                 <div class="text-xl font-semibold text-blue-800">Products</div>
                 <div class="text-3xl font-bold text-blue-900">{{ number_format($totalProducts) }}</div>
             </div>
+
+            <div class="bg-blue-100 rounded-lg shadow p-4 flex flex-col items-center">
+                <div class="text-xl font-semibold text-blue-800">User</div>
+                <div class="text-3xl font-bold text-blue-900">{{ number_format($totalUsers) }}</div>
+            </div>
         </div>
 
 

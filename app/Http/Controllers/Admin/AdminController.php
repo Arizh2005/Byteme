@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Laptop;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -33,11 +34,12 @@ class AdminController extends Controller
 
         $totalLogins = array_sum($chartData['data']);
         $totalProducts = Laptop::count();
+        $totalUsers = User::count();
 
 
 
 
-        return view('admin.dashboard', compact('chartData', 'totalLogins', 'totalProducts'));
+        return view('admin.dashboard', compact('chartData', 'totalLogins', 'totalProducts', 'totalUsers'));
     }
 
 

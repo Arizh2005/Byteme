@@ -1,15 +1,4 @@
-<!-- resources/views/about.blade.php -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> <!-- Pastikan Tailwind CSS dihubungkan -->
-</head>
-
-<body class="flex flex-col items-center justify-center min-h-screen p-4">
+<x-admin-layout>
     <div class="md:flex md:justify-center md:items-center">
         <div class="pt-16 max-w-5xl mx-auto ml-12 mr-12 text-justify">
             <h1 class="text-5xl md:text-6xl font-jua font-normal text-darkblue text-center leading-tight mb-12">About Us</h1>
@@ -26,6 +15,4 @@
             </div>
         </div>
     </div>
-</body>
-
-</html>
+</x-admin-layout>

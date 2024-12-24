@@ -11,18 +11,18 @@ class LaptopSeeder extends Seeder
     public function run()
     {
         Laptop::create([
-            'merk' => 'Dell',
-            'model' => 'XPS 13',
+            'merk' => 'Huawei',
+            'model' => 'TUF Dash A15',
             'sistem_operasi' => 'Windows 11',
-            'processor' => 'Intel i7',
+            'processor' => 'Intel I7 12900H',
             'jenis_ram' => 'DDR4',
             'ukuran_ram' => '16GB',
             'jenis_storage' => 'SSD',
             'ukuran_storage' => '512GB',
-            'gpu' => 'Intel Iris Xe',
-            'harga' => 20000000,
+            'gpu' => 'RTX 3060',
+            'harga' => 20650000,
             'ukuran_layar' => '13.3"',
-            'tipe_laptop' => 'Ultrabook',
+            'tipe_laptop' => 'Gaming',
             'gambar' => 'DldMcO3xi2jJlw1n07KtyFMNDS6UVwsWlLsk04q9.png',
         ]);
 

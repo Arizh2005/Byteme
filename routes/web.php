@@ -23,9 +23,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'userMiddleware'])->group(function () {
-    Route::get('dashboard', [UserController::class, 'index'])->name('dashboard')->middleware('verified');
-    Route::get('aboutus', function(){return view('user.aboutus');
-    });
+    Route::get('dashboard', [MatchController::class, 'mostViewed'])->name('dashboard')->middleware('verified');
+    Route::get('aboutus', function(){return view('user.aboutus');});
     Route::get('/product', [MatchController::class, 'product'])->name('user.product');
     Route::get('/laptop/{id}', [MatchController::class, 'show'])->name('user.detail');
     Route::get('/rekomendasi', [MatchController::class, 'getRecommendations'])->name('rekomendasi');
@@ -34,6 +33,7 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
 Route::middleware(['auth', 'adminMiddleware'])->group(function () {
     Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/products', [MatchController::class, 'product'])->name('products.index');
+
 });
 
 Route::get('/matching-form', [MatchController::class, 'showForm'])->name('match.form');

@@ -236,4 +236,9 @@ public function update(Request $request, $id)
         return response()->json(['message' => 'Preferences saved successfully.']);
 
     }
+    public function mostViewed(){
+        $mostViewedProducts = Laptop::orderBy('views', 'desc')->take(8)->get();
+
+        return view('user.dashboard', compact('mostViewedProducts'));
+    }
 }
