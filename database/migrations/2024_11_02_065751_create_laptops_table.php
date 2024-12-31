@@ -22,7 +22,7 @@ class CreateLaptopsTable extends Migration
             $table->decimal('harga', 15, 2)->nullable(); // Harga dengan dua desimal
             $table->string('ukuran_layar')->nullable(); // Contoh: 15.6"
             $table->string('tipe_laptop')->nullable();
-            $table->string('gambar')->nulleable();
+            $table->string('gambar')->default('default.jpg');
             $table->text('description')->nullable();
             $table->timestamps(); // Ini akan menambahkan kolom created_at dan updated_at
         });

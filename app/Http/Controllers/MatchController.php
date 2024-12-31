@@ -105,10 +105,9 @@ class MatchController extends Controller
 
     // Memproses data dari form matching
     // app/Http/Controllers/MatchController.php
-
-public function store(Request $request)
-{
-    $request->validate([
+    public function store(Request $request)
+    {
+        $request->validate([
             'merk' => 'required|string',
             'model' => 'required|string',
             'sistem_operasi' => 'required|string|in:Windows 10,Windows 11,iOS',
@@ -123,72 +122,53 @@ public function store(Request $request)
             'description' => 'nullable|string',
             'harga' => 'required|integer',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'link' => 'required|url'
-    ]);
+            'link' => 'required|url',
+        ]);
 
-    // Cek apakah ada gambar yang diupload
-    if ($request->hasFile('gambar')) {
-        $data['gambar'] = $request->file('gambar')->store('uploads', 'public');
-    }
+        $data = $request->all();
 
-    Laptop::create([
-        'merk' => $request->merk,
-        'model' => $request->model,
-        'sistem_operasi' => $request->sistem_operasi,
-        'processor' => $request->processor,
-        'jenis_ram' => $request->jenis_ram,
-        'ukuran_ram' => $request->ukuran_ram,
-        'jenis_storage' => $request->jenis_storage,
-        'ukuran_storage' => $request->ukuran_storage,
-        'gpu' => $request->gpu,
-        'ukuran_layar' => $request->ukuran_layar,
-        'tipe_laptop' => $request->tipe_laptop,
-        'description' => $request->description,
-        'harga' => $request->harga,
-        'gambar' => $data['gambar'] ?? null,
-        'link' => $request->link,
-    ]);
-
-
-    return redirect()->route('crud_table.index')->with('success', 'Laptop berhasil ditambahkan.');
-}
-
-public function update(Request $request, $id)
-{
-    \Log::info($request->all());
-
-    $request->validate([
-            'merk' => 'required|string',
-            'model' => 'required|string',
-            'sistem_operasi' => 'required|string|in:Windows 10,Windows 11,iOS',
-            'processor' => 'required|string',
-            'jenis_ram' => 'required|string|in:DDR3,DDR4,DDR5',
-            'ukuran_ram' => 'required|string|in:4GB,8GB,12GB,16GB',
-            'jenis_storage' => 'required|string|in:SSD,HDD',
-            'ukuran_storage' => 'required|string|in:256GB,512GB,1TB',
-            'gpu' => 'nullable|string',
-            'ukuran_layar' => 'nullable|string',
-            'tipe_laptop' => 'nullable|string',
-            'description' => 'nullable|string',
-            'harga' => 'required|integer',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-    ]);
-
-    $laptops = Laptop::findOrFail($id);
-    $data = $request->all();
-
-
-    // Jika ada gambar baru yang diupload, hapus yang lama dan simpan yang baru
-    if ($request->hasFile('gambar')) {
-        if ($laptop->gambar && \Storage::disk('public')->exists($laptop->gambar)) {
-            \Storage::disk('public')->delete($laptop->gambar);
+        if ($request->hasFile('gambar')) {
+            $data['gambar'] = $request->file('gambar')->store('uploads', 'public');
         }
-        $data['gambar'] = $request->file('gambar')->store('uploads', 'public');
+
+        Laptop::create($data);
+
+        return redirect()->route('crud_table.index')->with('success', 'Laptop berhasil ditambahkan.');
     }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'merk' => 'required|string',
+            'model' => 'required|string',
+            'sistem_operasi' => 'required|string|in:Windows 10,Windows 11,iOS',
+            'processor' => 'required|string',
+            'jenis_ram' => 'required|string|in:DDR3,DDR4,DDR5',
+            'ukuran_ram' => 'required|string|in:4GB,8GB,12GB,16GB',
+            'jenis_storage' => 'required|string|in:SSD,HDD',
+            'ukuran_storage' => 'required|string|in:256GB,512GB,1TB',
+            'gpu' => 'nullable|string',
+            'ukuran_layar' => 'nullable|string',
+            'tipe_laptop' => 'nullable|string',
+            'description' => 'nullable|string',
+            'harga' => 'required|integer',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
 
-    $laptops->update($data);
+        $laptop = Laptop::findOrFail($id);
+        $data = $request->all();
 
-    return redirect()->route('crud_table.index')->with('success', 'Laptop berhasil diperbarui.');
+        if ($request->hasFile('gambar')) {
+            // Delete the old image if it exists
+            if ($laptop->gambar && \Storage::disk('public')->exists($laptop->gambar)) {
+                \Storage::disk('public')->delete($laptop->gambar);
+            }
+            // Store the new image
+            $data['gambar'] = $request->file('gambar')->store('uploads', 'public');
+        }
+
+        $laptop->update($data);
+
+        return redirect()->route('crud_table.index')->with('success', 'Laptop berhasil diperbarui.');
     }
     public function show($id){
         $laptop = Laptop::findOrFail($id);
